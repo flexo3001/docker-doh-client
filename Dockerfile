@@ -9,22 +9,20 @@ RUN cargo build --release
 
 FROM alpine:latest
 
-ENV PORT 53
-ENV LISTEN_ADDR 127.0.0.1:$PORT
-ENV REMOTE_ADDR 1.1.1.1:443
+ENV LISTEN_ADDR "127.0.0.1:53"
+ENV REMOTE_ADDR "1.1.1.1:443"
 ENV CACHE_SIZE 1024
-ENV DOMAIN cloudflare-dns.com
-ENV PATH dns-query
-ENV TIMEOUT 2
-ENV RETRIES 3
+ENV DOMAIN "cloudflare-dns.com"
+ENV LOCATION_PATH "dns-query"
+#ENV TIMEOUT 2
+#ENV RETRIES 3
 
-EXPOSE $PORT/tcp $PORT/udp
+EXPOSE 53/tcp 53/udp
 
 RUN apk add ca-certificates-cacert libgcc libunwind
 
 COPY --from=rsbuild /doh-client/target/release/doh-client /usr/local/bin/doh-client
 
-ENTRYPOINT ["/usr/local/bin/doh-client /etc/ssl/cert.pem"]
-CMD ["-c $CACHE_SIZE -d $DOMAIN -l $LISTEN_ADDR -p $PATH -r $REMOTE_ADDR --retries $RETRIES -t $TIMEOUT"]
+CMD ["/bin/sh", "-c", "/usr/local/bin/doh-client /etc/ssl/cert.pem -c $CACHE_SIZE -d $DOMAIN -l $LISTEN_ADDR -p $LOCATION_PATH -r $REMOTE_ADDR --retries $RETRIES -t $TIMEOUT"]
 
 LABEL maintainer="Marco Kundt"
