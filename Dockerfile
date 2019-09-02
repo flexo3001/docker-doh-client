@@ -19,7 +19,7 @@ ENV LOCATION_PATH "dns-query"
 
 EXPOSE 53/tcp 53/udp
 
-RUN apk add ca-certificates-cacert libgcc libunwind
+RUN apk update && apk add ca-certificates-cacert libgcc libunwind
 
 COPY --from=rsbuild /doh-client/target/release/doh-client /usr/local/bin/doh-client
 
