@@ -5,3 +5,15 @@ This runs doh-client (https://github.com/LinkTed/doh-client) as a dns client at 
 ### Running the container
 #### Using defaults
 ```docker run --name doh-client --rm --net host flexo3001/doh-client```
+
+The default options are (which you can override with -e option):
+
+```
+LISTEN_ADDR "127.0.0.1:53"
+REMOTE_ADDR "1.1.1.1:443"
+CACHE_SIZE 1024
+DOMAIN "cloudflare-dns.com"
+LOCATION_PATH "dns-query"
+TIMEOUT 2
+RETRIES 3
+```
