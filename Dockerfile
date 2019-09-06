@@ -9,7 +9,8 @@ RUN cargo build --release
 
 FROM alpine:latest
 
-ENV LISTEN_ADDR "127.0.0.1:53"
+ENV PORT 53
+ENV LISTEN_ADDR "127.0.0.1:$PORT"
 ENV REMOTE_ADDR "1.1.1.1:443"
 ENV CACHE_SIZE 1024
 ENV DOMAIN "cloudflare-dns.com"

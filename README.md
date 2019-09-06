@@ -9,7 +9,8 @@ This runs doh-client (https://github.com/LinkTed/doh-client) as a dns client at 
 The default options are (which you can override with -e option):
 
 ```
-LISTEN_ADDR "127.0.0.1:53"
+PORT 53
+LISTEN_ADDR "127.0.0.1:$PORT"
 REMOTE_ADDR "1.1.1.1:443"
 CACHE_SIZE 1024
 DOMAIN "cloudflare-dns.com"
