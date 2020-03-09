@@ -4,12 +4,12 @@ This runs doh-client (https://github.com/LinkTed/doh-client) as a dns over https
 
 ### Running the container
 #### Using defaults
-```docker run --name doh-client --rm -p 53:53 flexo3001/doh-client```
+```docker run --name doh-client --rm -p 53:53 -p 53:53/udp flexo3001/doh-client```
 
 The default options are (which you can override with -e option):
 
 ```
-LISTEN_ADDR "127.0.0.1:53"
+LISTEN_ADDR "0.0.0.0:53"
 REMOTE_ADDR "1.1.1.1:443"
 DOMAIN "cloudflare-dns.com"
 LOCATION_PATH "dns-query"
