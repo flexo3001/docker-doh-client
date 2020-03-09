@@ -1,7 +1,7 @@
 FROM alpine:latest as rsbuild
 
 RUN apk update && \
-    apk add ca-certificates cargo gcc git rust && \
+    apk add cargo rust && \
     mkdir /doh-client && \
     cargo install --root /doh-client doh-client
 
@@ -14,7 +14,7 @@ ENV LOCATION_PATH dns-query
 
 EXPOSE 53/tcp 53/udp
 
-RUN apk update && apk add ca-certificates libgcc libunwind
+RUN apk update && apk add ca-certificates libgcc
 
 COPY --from=rsbuild /doh-client/bin/doh-client /usr/local/bin/doh-client
 
