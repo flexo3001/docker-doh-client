@@ -12,5 +12,5 @@ The default options are (which you can override with -e option):
 LISTEN_ADDR "127.0.0.1:53"
 REMOTE_ADDR "1.1.1.1:443"
 DOMAIN "cloudflare-dns.com"
-PATH "dns-query"
+LOCATION_PATH "dns-query"
 ```
