@@ -19,5 +19,3 @@ RUN apk update && apk add ca-certificates libgcc
 COPY --from=rsbuild /doh-client/bin/doh-client /usr/local/bin/doh-client
 
 CMD ["/bin/sh", "-c", "/usr/local/bin/doh-client -d $DOMAIN -l $LISTEN_ADDR -p $LOCATION_PATH -r $REMOTE_ADDR /etc/ssl/cert.pem"]
-
-LABEL maintainer="Marco Kundt"
